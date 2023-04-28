@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -14,6 +14,9 @@ export default function RoutineForm() {
   targetWeight: "",
   goal: "",
   workoutDifficulty: "",
+  calorieIntake: "",
+  calorieMaintain: "",
+  daysToTarget: "",
 });
 
  const navigate = useNavigate();
@@ -27,12 +30,68 @@ export default function RoutineForm() {
 
  // Function to handle submission.
  async function onSubmit(e) {
-  e.preventDefault(); 
-  sendToDb();
+  e.preventDefault();   
+   sendToDb();
 }
+// Big Maffs
+let calculation = "";
+let maintainCalc = "";
+let intakeOffset= "";
+let activityOffset= "";
+
+if (form.workoutDifficulty === "Low") {
+  activityOffset = 250;
+}
+
+if (form.workoutDifficulty === "Moderate") {
+  activityOffset = 700;
+}
+
+if (form.workoutDifficulty === "Intense") {
+  activityOffset = 1150;
+}
+
+if (form.goal === "Slim") {
+  intakeOffset = -500;
+}
+
+if (form.goal === "Maintain") {
+  intakeOffset = 0;
+}
+
+if (form.goal === "Bulk") {
+  intakeOffset = 1400;
+}
+
+let toTargetDays = Math.abs(form.targetWeight - form.currentWeight) * 3500 / Math.abs(intakeOffset);
+console.log("test " + toTargetDays);
+
+if (form.sex === "Male") {
+  let convertWeight = form.currentWeight * .453592;
+  let convertHeight = form.height * 2.54;
+  calculation = (10 * convertWeight) + (6.25 * convertHeight) - (5 * form.age) + 5 + intakeOffset + activityOffset;
+  maintainCalc = (10 * convertWeight) + (6.25 * convertHeight) - (5 * form.age) + 5;
+  console.log(calculation);
+  console.log(maintainCalc);
+}
+if (form.sex === "Female") {
+  let convertWeight = form.currentWeight * .453592;
+  let convertHeight = form.height * 2.54;
+  calculation = (10 * convertWeight) + (6.25 * convertHeight) - (5 * form.age) - 161 + intakeOffset + activityOffset;
+  maintainCalc = (10 * convertWeight) + (6.25 * convertHeight) - (5 * form.age) -161;
+  console.log(calculation);
+  console.log(maintainCalc);
+} 
+
+useEffect(() => {
+  updateForm({ calorieIntake: calculation }); 
+  updateForm({ calorieMaintain: maintainCalc }); 
+  updateForm({ daysToTarget: toTargetDays }); 
+}, [calculation, maintainCalc, toTargetDays]);
 
  // Sends form data to database
  async function sendToDb(){
+  console.log(form.routineName);
   const newRoutine = { ...form };
     await fetch("/routines/add", {
      method: "POST",
@@ -54,7 +113,10 @@ export default function RoutineForm() {
    currentWeight: "",
    targetWeight: "",
    goal: "",
-   workoutDifficulty: "",});
+   workoutDifficulty: "",
+   calorieIntake: "",
+   calorieMaintain: "",
+   daysToTarget: "",});
    navigate("/showRoutines");
  }
 
@@ -103,10 +165,9 @@ export default function RoutineForm() {
         <Form.Label className="text-light">Workout Difficulty</Form.Label>
         <Form.Select onChange={(e) => updateForm({ workoutDifficulty: e.target.value })} type="text">
           <option></option>
-          <option>Beginner</option>
-          <option>Intermediate</option>
-          <option>Advanced</option>
-          <option>Expert</option>
+          <option value="Low">Daily exercise, or intense exercise 3-4 times per week</option>
+          <option value="Moderate">Intense exercise 6-7 times per week</option>
+          <option value="Intense">Very intense exercise daily, or a highly physical job</option>
         </Form.Select>   
     
       </Form.Group>

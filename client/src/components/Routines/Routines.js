@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
  
 const Record = (props) => (
  <tr>
-   <td>{props.record.routines}</td>
+   <td>{props.record.routineName}</td>
    <td></td>
    <td></td>
    <td>

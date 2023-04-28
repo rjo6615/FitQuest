@@ -39,6 +39,9 @@ routineRoutes.route("/routines/add").post(function (req, response) {
     targetWeight: req.body.targetWeight,
     goal: req.body.goal,
     workoutDifficulty: req.body.workoutDifficulty,
+    calorieIntake: req.body.calorieIntake,
+    calorieMaintain: req.body.calorieMaintain,
+    daysToTarget: req.body.daysToTarget,
   };
   db_connect.collection("routines").insertOne(myobj, function (err, res) {
     if (err) throw err;
