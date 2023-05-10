@@ -21,10 +21,17 @@ export default function SingleRoutine() {
   calorieMaintain: "",
   daysToTarget: "",
  });
+
+ const [routine, setRoutine] = useState({
+  name: "", 
+  difficulty: "",
+  volume: "",
+ });
  
  const params = useParams();
  const navigate = useNavigate();
  
+ //Fetches original routine data
  useEffect(() => {
    async function fetchData() {
      const id = params.id.toString();
@@ -51,6 +58,42 @@ export default function SingleRoutine() {
    return;
    
  }, [params.id, navigate]);
+
+  //Fetches routine goal data
+  useEffect(() => {
+    setTimeout(() => {
+    async function fetchData() {
+      console.log(form.goal);
+      const goal = form.goal.toString();
+      //parameters arent passing
+      const test = "Slim";
+      const response = await fetch(`/routines/goal/${test}`);
+  
+      if (!response.ok) {
+        const message = `An error has occurred: ${response.statusText}`;
+        window.alert(message);
+        return;
+      }
+  
+      const record = await response.json();
+      if (!record) {
+        window.alert(`Record with goal ${goal} not found`);
+        navigate("/");
+        return;
+      }
+  console.log(form.goal);
+      setRoutine(record);
+    }
+    fetchData();
+  }, 1000);
+    return;
+    
+  }, [form.goal, navigate]);
+  
+  useEffect(() => {
+    console.log(routine.name);
+  }, [routine.name]);
+  
  // This following section will display the workout data from the db.
  return (
   <center className="pb-4">
@@ -64,6 +107,8 @@ export default function SingleRoutine() {
      <Card.Subtitle className="mb-2 text-muted">Days to Target Weight: {form.daysToTarget}</Card.Subtitle>
      <Card.Subtitle className="mb-2 text-muted">Calories to Maintain Weight: {form.calorieMaintain}</Card.Subtitle>
      <Card.Subtitle className="mb-2 text-muted">Target Weight: {form.targetWeight}</Card.Subtitle>
+     <Card.Subtitle className="mb-2 text-muted">Workout Name: {routine.name}</Card.Subtitle>
+     <Card.Subtitle className="mb-2 text-muted">Workout Volume: {routine.volume}</Card.Subtitle>
    </Card.Body>
  </Card>            
  </Col>
