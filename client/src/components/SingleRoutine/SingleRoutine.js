@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router";
-// import { MDBCard, MDBCardBody, MDBCardTitle, MDBCardText} from 'mdb-react-ui-kit';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
-// import Row from 'react-bootstrap/Row';
-// import Button from 'react-bootstrap/Button';
-// import Modal from 'react-bootstrap/Modal';
  
 export default function SingleRoutine() {
  const [form, setForm] = useState({
@@ -22,11 +18,7 @@ export default function SingleRoutine() {
   daysToTarget: "",
  });
 
- const [routine, setRoutine] = useState({
-  name: "", 
-  difficulty: "",
-  volume: "",
- });
+ const [routine, setRoutine] = useState([]);
  
  const params = useParams();
  const navigate = useNavigate();
@@ -52,28 +44,25 @@ export default function SingleRoutine() {
  
      setForm(record);
    }
-   fetchData();
-   
-   
+   fetchData();   
    return;
    
  }, [params.id, navigate]);
 
+
   //Fetches routine goal data
   useEffect(() => {
-    setTimeout(() => {
-    async function fetchData() {
+    async function fetchStuff() {
       console.log(form.goal);
       const goal = form.goal.toString();
-      //parameters arent passing
-      const test = "Slim";
-      const response = await fetch(`/routines/goal/${test}`);
+      // very angry big errors but work afterwords
+      const response = await fetch(`/routines/goal/${form.goal.toString()}/${form.workoutDifficulty.toString()}`);
   
-      if (!response.ok) {
-        const message = `An error has occurred: ${response.statusText}`;
-        window.alert(message);
-        return;
-      }
+      // if (!response.ok) {
+      //   const message = `An error has occurred: ${response.statusText}`;
+      //   window.alert(message);
+      //   return;
+      // }
   
       const record = await response.json();
       if (!record) {
@@ -84,15 +73,12 @@ export default function SingleRoutine() {
   console.log(form.goal);
       setRoutine(record);
     }
-    fetchData();
-  }, 1000);
+    fetchStuff();
     return;
     
-  }, [form.goal, navigate]);
+  }, [form, routine.length, navigate]);
   
-  useEffect(() => {
-    console.log(routine.name);
-  }, [routine.name]);
+
   
  // This following section will display the workout data from the db.
  return (
@@ -100,18 +86,20 @@ export default function SingleRoutine() {
      <div className="">
      <h1 className="text-light">{form.routineName}</h1>
      <h2 className="text-light">Age: {form.age}</h2>
+     {routine.map((el) => (   
  <Col className="mx-5">          
- <Card>
+ <Card> 
    <Card.Body>
      <Card.Title>Suggested Calorie Intake: {form.calorieIntake}</Card.Title>
      <Card.Subtitle className="mb-2 text-muted">Days to Target Weight: {form.daysToTarget}</Card.Subtitle>
      <Card.Subtitle className="mb-2 text-muted">Calories to Maintain Weight: {form.calorieMaintain}</Card.Subtitle>
-     <Card.Subtitle className="mb-2 text-muted">Target Weight: {form.targetWeight}</Card.Subtitle>
-     <Card.Subtitle className="mb-2 text-muted">Workout Name: {routine.name}</Card.Subtitle>
-     <Card.Subtitle className="mb-2 text-muted">Workout Volume: {routine.volume}</Card.Subtitle>
+     <Card.Subtitle className="mb-2 text-muted">Target Weight: {form.targetWeight}</Card.Subtitle>     
+     <Card.Subtitle className="mb-2 text-muted">Workout Name: {el.name}</Card.Subtitle>
+     <Card.Subtitle className="mb-2 text-muted">Workout Volume: {el.volume}</Card.Subtitle>    
    </Card.Body>
  </Card>            
  </Col>
+  ))}
   </div>
 </center>
 );
