@@ -122,6 +122,7 @@ export default function SingleRoutine() {
         <h6 className="card-title">We reccomend a daily intake of <strong>{form.calorieIntake}</strong> per day to reach your goal.</h6>
         <h6 className="card-title">Your current calorie intake to maintain your weight not including excercise would be <strong>{form.calorieMaintain}</strong> per day to reach your goal.</h6>
         <p className="card-text"></p>
+        <Button variant="primary">Your Personal Nutrition</Button>
         <p className="card-text"><small class="text-muted"></small></p>
       </div>
     </div>
@@ -129,17 +130,7 @@ export default function SingleRoutine() {
 </div>
 </Col>
 </Row>
-     <div className="">
-     {/* <h1 className="text-light">{form.routineName}</h1>
-     <h2 className="text-light">Age: {form.age}</h2>
- <Card> 
-   <Card.Body>
-     <Card.Title>Suggested Calorie Intake: {form.calorieIntake}</Card.Title>
-     <Card.Subtitle className="mb-2 text-muted">Days to Target Weight: {form.daysToTarget}</Card.Subtitle>
-     <Card.Subtitle className="mb-2 text-muted">Calories to Maintain Weight: {form.calorieMaintain}</Card.Subtitle>
-     <Card.Subtitle className="mb-2 text-muted">Target Weight: {form.targetWeight}</Card.Subtitle>       
-   </Card.Body>
- </Card>           */}
+     <div className="">          
  <div className="container">
  <Row xs={1} md={2} lg={3} xl={4} className="g-4 mx-4">
  {routine.map((el) => (   
