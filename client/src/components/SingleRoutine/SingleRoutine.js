@@ -23,14 +23,6 @@ export default function SingleRoutine() {
 
  const [routine, setRoutine] = useState([]);
  const [modalData, setModalData] = useState([]);
-
-
-//  let calPerPnd = "";
-//  useEffect(() =>{
-//  calPerPnd = routine.calPerPnd * form.currentWeight;
-//  console.log(calPerPnd);
-//  }, [form, routine]);
-
  const [show, setShow] = useState(false);
  const handleClose = () => setShow(false);
  const handleShow = () => setShow(true);

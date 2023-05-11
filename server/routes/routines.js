@@ -30,7 +30,6 @@ routineRoutes.route("/routines").get(function (req, res) {
 // This section will get a list of all the routines.
 routineRoutes.route("/routines/goal/:goal/:difficulty/:day").get(function (req, res) {
   let db_connect = dbo.getDb();
-  console.log("DB Call: " + req.params.goal);
   db_connect
     .collection(req.params.goal)
     .find({ difficulty: req.params.difficulty, day: req.params.day })
