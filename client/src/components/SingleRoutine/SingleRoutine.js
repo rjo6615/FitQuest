@@ -4,6 +4,7 @@ import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
+import Modal from 'react-bootstrap/Modal';
 
 export default function SingleRoutine() {
  const [form, setForm] = useState({
@@ -21,6 +22,11 @@ export default function SingleRoutine() {
  });
 
  const [routine, setRoutine] = useState([]);
+ const [modalData, setModalData] = useState([]);
+
+ const [show, setShow] = useState(false);
+ const handleClose = () => setShow(false);
+ const handleShow = () => setShow(true);
  
  const params = useParams();
  const navigate = useNavigate();
@@ -140,18 +146,29 @@ export default function SingleRoutine() {
  {routine.map((el) => (   
   <Col>
  <Card className="mt-4" style={{ width: '18rem' }}>
- <Card.Img variant="top" src="https://hips.hearstapps.com/hmg-prod/images/running-is-one-of-the-best-ways-to-stay-fit-royalty-free-image-1036780592-1553033495.jpg?crop=0.668xw:1.00xh;0.260xw,0&resize=1200:*" />
+ <Card.Img variant="top" src={el.image} />
  <Card.Body>
    <Card.Title>{el.name}</Card.Title>
    <Card.Text>
    {el.volume}
    </Card.Text>
-   <Button variant="primary">More Information</Button>
+   <Button variant="secondary" onClick={() => {handleShow(); setModalData(el);}}>More Information</Button>
  </Card.Body>
 </Card>
 </Col>
   ))}
 </Row>
+<Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>{modalData.name}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{modalData.info}</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
 </div>
 </div>
 </center>
