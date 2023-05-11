@@ -24,6 +24,13 @@ export default function SingleRoutine() {
  const [routine, setRoutine] = useState([]);
  const [modalData, setModalData] = useState([]);
 
+
+//  let calPerPnd = "";
+//  useEffect(() =>{
+//  calPerPnd = routine.calPerPnd * form.currentWeight;
+//  console.log(calPerPnd);
+//  }, [form, routine]);
+
  const [show, setShow] = useState(false);
  const handleClose = () => setShow(false);
  const handleShow = () => setShow(true);
@@ -63,8 +70,11 @@ export default function SingleRoutine() {
     async function fetchStuff() {
       console.log(form.goal);
       const goal = form.goal.toString();
+      const date = new Date();
+      const day = date.getDay();  
+      console.log(day);    
       // very angry big errors but work afterwords
-      const response = await fetch(`/routines/goal/${form.goal.toString()}/${form.workoutDifficulty.toString()}`);
+      const response = await fetch(`/routines/goal/${form.goal.toString()}/${form.workoutDifficulty.toString()}/${day}`);
   
       // if (!response.ok) {
       //   const message = `An error has occurred: ${response.statusText}`;
@@ -150,7 +160,10 @@ export default function SingleRoutine() {
  <Card.Body>
    <Card.Title>{el.name}</Card.Title>
    <Card.Text>
-   {el.volume}
+   {el.volume} Hour(s)
+   </Card.Text>
+   <Card.Text>
+    Calories Burned: <strong>{Math.round(el.activityCoefficient * (form.currentWeight * 0.4535937) * el.volume)}</strong>
    </Card.Text>
    <Button variant="secondary" onClick={() => {handleShow(); setModalData(el);}}>More Information</Button>
  </Card.Body>
