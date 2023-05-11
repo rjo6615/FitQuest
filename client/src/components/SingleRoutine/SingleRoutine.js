@@ -87,6 +87,7 @@ export default function SingleRoutine() {
   
   <center className="pb-4">
     <Row xs={1} md={2} lg={2} xl={2} className="g-4 mx-4">
+    {/* Profile Card */}
     <Col>
     <div className="card mb-3" style={{ maxWidth: 840 }}>
   <div className="row no-gutters">
@@ -97,8 +98,9 @@ export default function SingleRoutine() {
       <div className="card-body">
         <h4 className="card-title">{form.routineName}</h4>
         <h6 className="card-title">Age: {form.age}</h6>
+        <h6 className="card-title">Height: {form.height} Inches</h6>
         <h6 className="card-title">Sex: {form.sex}</h6>
-        <h6 className="card-title">Current Weight: {form.currentWeight}</h6>
+        <h6 className="card-title">Current Weight: {form.currentWeight} Pounds</h6>
         <h6 className="card-title">Target Weight: {form.targetWeight}</h6>
         <h6 className="card-title">Goal: {form.goal}</h6>
         <h6 className="card-title">Workout Difficulty: {form.workoutDifficulty}</h6>
@@ -109,6 +111,7 @@ export default function SingleRoutine() {
   </div>
 </div>
 </Col>
+{/* Nutrition Card */}
 <Col>
     <div className="card mb-3" style={{ maxWidth: 840 }}>
   <div className="row no-gutters">
@@ -133,6 +136,7 @@ export default function SingleRoutine() {
      <div className="">          
  <div className="container">
  <Row xs={1} md={2} lg={3} xl={4} className="g-4 mx-4">
+ {/* Cards for the different exercises */}
  {routine.map((el) => (   
   <Col>
  <Card className="mt-4" style={{ width: '18rem' }}>

@@ -62,7 +62,7 @@ if (form.goal === "Maintain") {
 if (form.goal === "Bulk") {
   intakeOffset = 1400;
 }
-
+// Calculator to get to target weight by time
 let toTargetDays = Math.round(Math.abs(form.targetWeight - form.currentWeight) * 3500 / Math.abs(intakeOffset));
 console.log("test " + toTargetDays);
 
