@@ -63,22 +63,22 @@ if (form.goal === "Bulk") {
   intakeOffset = 1400;
 }
 
-let toTargetDays = Math.abs(form.targetWeight - form.currentWeight) * 3500 / Math.abs(intakeOffset);
+let toTargetDays = Math.round(Math.abs(form.targetWeight - form.currentWeight) * 3500 / Math.abs(intakeOffset));
 console.log("test " + toTargetDays);
 
 if (form.sex === "Male") {
   let convertWeight = form.currentWeight * .453592;
   let convertHeight = form.height * 2.54;
-  calculation = (10 * convertWeight) + (6.25 * convertHeight) - (5 * form.age) + 5 + intakeOffset + activityOffset;
-  maintainCalc = (10 * convertWeight) + (6.25 * convertHeight) - (5 * form.age) + 5;
+  calculation = Math.round((10 * convertWeight) + (6.25 * convertHeight) - (5 * form.age) + 5 + intakeOffset + activityOffset);
+  maintainCalc = Math.round((10 * convertWeight) + (6.25 * convertHeight) - (5 * form.age) + 5);
   console.log(calculation);
   console.log(maintainCalc);
 }
 if (form.sex === "Female") {
   let convertWeight = form.currentWeight * .453592;
   let convertHeight = form.height * 2.54;
-  calculation = (10 * convertWeight) + (6.25 * convertHeight) - (5 * form.age) - 161 + intakeOffset + activityOffset;
-  maintainCalc = (10 * convertWeight) + (6.25 * convertHeight) - (5 * form.age) -161;
+  calculation = Math.round((10 * convertWeight) + (6.25 * convertHeight) - (5 * form.age) - 161 + intakeOffset + activityOffset);
+  maintainCalc = Math.round((10 * convertWeight) + (6.25 * convertHeight) - (5 * form.age) -161);
   console.log(calculation);
   console.log(maintainCalc);
 } 
