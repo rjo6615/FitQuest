@@ -21,6 +21,7 @@ export default function SingleRoutine() {
   daysToTarget: "",
  });
 
+ const [totalCal, setTotalCal] = useState([]);
  const [routine, setRoutine] = useState([]);
  const [modalData, setModalData] = useState([]);
  const [show, setShow] = useState(false);
@@ -90,6 +91,15 @@ export default function SingleRoutine() {
   
 
   
+useEffect(() => {
+let totalCal = 0;  
+routine.map((el) => (
+  totalCal = totalCal + Math.round(el.activityCoefficient * (form.currentWeight * 0.4535937) * el.volume/60)
+  ));
+  setTotalCal(totalCal);
+}, [form, routine]);
+ 
+
  // This following section will display the workout data from the db.
  return (
   
@@ -163,6 +173,7 @@ export default function SingleRoutine() {
 </Col>
   ))}
 </Row>
+<Button variant="success" className="mt-4">Total Calories: {totalCal}</Button>
 <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>{modalData.name}</Modal.Title>
