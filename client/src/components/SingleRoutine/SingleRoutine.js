@@ -133,7 +133,7 @@ export default function SingleRoutine() {
         <h6 className="card-title">We reccomend a daily intake of <strong>{form.calorieIntake}</strong> per day to reach your goal.</h6>
         <h6 className="card-title">Your current calorie intake to maintain your weight not including excercise would be <strong>{form.calorieMaintain}</strong> per day to reach your goal.</h6>
         <p className="card-text"></p>
-        <Button variant="primary">Your Personal Nutrition</Button>
+        <a className="text-light text-decoration-none" href="/nutrition"><Button variant="primary">Your Personal Nutrition</Button></a>
         <p className="card-text"><small class="text-muted"></small></p>
       </div>
     </div>

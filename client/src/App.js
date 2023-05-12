@@ -3,6 +3,7 @@ import { BrowserRouter as Router,  Route,  Routes,  Navigate} from "react-router
 import CreateRoutine from "./components/CreateRoutine/CreateRoutine";
 import Routines from "./components/Routines/Routines";
 import SingleRoutine from "./components/SingleRoutine/SingleRoutine";
+import Nutrition from "./components/Nutrition/Nutrition";
 import Home from "./components/Home/Home";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
@@ -30,6 +31,7 @@ function App() {
           <Route path="/create-routine" element={<CreateRoutine />} />
           <Route path="/showRoutines" element={<Routines />} />
           <Route path="/single-routine/:id" element={<SingleRoutine />} />
+          <Route path="/nutrition" element={<Nutrition />} />
           <Route path="*" element={<Navigate to="/"/>} />
         </Routes>
         <Footer />
