@@ -152,10 +152,10 @@ export default function SingleRoutine() {
  <Card.Body>
    <Card.Title>{el.name}</Card.Title>
    <Card.Text>
-   {el.volume} Hour(s)
+   {el.volume} Minutes
    </Card.Text>
    <Card.Text>
-    Calories Burned: <strong>{Math.round(el.activityCoefficient * (form.currentWeight * 0.4535937) * el.volume)}</strong>
+    Calories Burned: <strong>{Math.round(el.activityCoefficient * (form.currentWeight * 0.4535937) * el.volume/60)}</strong>
    </Card.Text>
    <Button variant="secondary" onClick={() => {handleShow(); setModalData(el);}}>More Information</Button>
  </Card.Body>
