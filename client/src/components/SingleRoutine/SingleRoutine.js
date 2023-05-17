@@ -140,7 +140,7 @@ routine.map((el) => (
       <div className="card-body">
         <h4 className="card-title">Nutrition</h4>
         <h5 className="card-title">Days until target is reached: {form.daysToTarget}</h5>
-        <h6 className="card-title">We reccomend a daily intake of <strong>{form.calorieIntake}</strong> per day to reach your goal.</h6>
+        <h6 className="card-title">We reccomend a daily intake of <strong>{Number(form.calorieMaintain) + (Number(form.calorieIntake) + totalCal)}</strong> per day to reach your goal.</h6>
         <h6 className="card-title">Your current calorie intake to maintain your weight not including excercise would be <strong>{form.calorieMaintain}</strong> per day to reach your goal.</h6>
         <p className="card-text"></p>
         <a className="text-light text-decoration-none" href="/nutrition"><Button variant="primary">Your Personal Nutrition</Button></a>
