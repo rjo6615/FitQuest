@@ -38,7 +38,27 @@ export default function RoutineForm() {
 // Big Maffs
 let maintainCalc = "";
 let yourGoal = "";
+let sliderMin = "";
+let sliderMax = "";
+let sliderValue = "";
 
+if (form.goal === "Slim") {
+  sliderMin = -1200;
+  sliderMax = -100;
+  sliderValue = value;
+}
+
+if (form.goal === "Maintain") {
+  sliderValue = 0;
+  sliderMin = 0;
+  sliderMax = 0;
+}
+
+if (form.goal === "Bulk") {
+  sliderMin = 100;
+  sliderMax = 6000;
+  sliderValue = value;
+}
 
 if (form.currentWeight > form.targetWeight) {
   yourGoal = "Slim";
@@ -71,7 +91,8 @@ useEffect(() => {
   updateForm({ calorieMaintain: maintainCalc }); 
   updateForm({ daysToTarget: toTargetDays }); 
   updateForm({ goal: yourGoal }); 
-}, [maintainCalc, toTargetDays, yourGoal]);
+  updateForm({ calorieIntake: sliderValue });
+}, [maintainCalc, toTargetDays, yourGoal, sliderValue]);
 
  // Sends form data to database
  async function sendToDb(){
@@ -148,7 +169,7 @@ useEffect(() => {
         
         <Form.Label className="text-light">Calorie Intake</Form.Label>
         <CDBContainer>
-          <CDBSlider step={100} value={value} onChange={changeEvent => { setValue(changeEvent.target.value); updateForm({ calorieIntake: changeEvent.target.value })}} tooltip={"auto"} tooltipPlacement={"bottom"} size={"lg"} min={-1200} max={6000} style={{ width: '100%' }} />
+          <CDBSlider step={100} value={value} onChange={changeEvent => { setValue(changeEvent.target.value); updateForm({ calorieIntake: changeEvent.target.value })}} tooltip={"auto"} tooltipPlacement={"bottom"} size={"lg"} min={sliderMin} max={sliderMax} style={{ width: '100%' }} />
         </CDBContainer> 
     
       </Form.Group>
