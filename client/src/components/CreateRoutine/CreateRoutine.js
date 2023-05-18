@@ -36,55 +36,42 @@ export default function RoutineForm() {
    sendToDb();
 }
 // Big Maffs
-// let calculation = "";
 let maintainCalc = "";
-// let intakeOffset= "";
-// let activityOffset= "";
+let yourGoal = "";
 
-// if (form.workoutDifficulty === "Low") {
-//   activityOffset = 250;
-// }
 
-// if (form.workoutDifficulty === "Moderate") {
-//   activityOffset = 700;
-// }
+if (form.currentWeight > form.targetWeight) {
+  yourGoal = "Slim";
+}
 
-// if (form.workoutDifficulty === "Intense") {
-//   activityOffset = 1150;
-// }
+if (form.currentWeight === form.targetWeight) {
+  yourGoal = "Maintain";
+}
 
-// if (form.goal === "Slim") {
-//   intakeOffset = -500;
-// }
+if (form.currentWeight < form.targetWeight) {
+  yourGoal = "Bulk";
+}
 
-// if (form.goal === "Maintain") {
-//   intakeOffset = 0;
-// }
 
-// if (form.goal === "Bulk") {
-//   intakeOffset = 1400;
-// }
 // Calculator to get to target weight by time
 let toTargetDays = Math.round(Math.abs(form.targetWeight - form.currentWeight) * 3500 / Math.abs(form.calorieIntake));
 
 if (form.sex === "Male") {
   let convertWeight = form.currentWeight * .453592;
   let convertHeight = form.height * 2.54;
-  // calculation = Math.round((10 * convertWeight) + (6.25 * convertHeight) - (5 * form.age) + 5 + intakeOffset + activityOffset);
   maintainCalc = Math.round((10 * convertWeight) + (6.25 * convertHeight) - (5 * form.age) + 5);
 }
 if (form.sex === "Female") {
   let convertWeight = form.currentWeight * .453592;
   let convertHeight = form.height * 2.54;
-  // calculation = Math.round((10 * convertWeight) + (6.25 * convertHeight) - (5 * form.age) - 161 + intakeOffset + activityOffset);
   maintainCalc = Math.round((10 * convertWeight) + (6.25 * convertHeight) - (5 * form.age) -161);
 } 
 
 useEffect(() => {
-  // updateForm({ calorieIntake: calculation }); 
   updateForm({ calorieMaintain: maintainCalc }); 
   updateForm({ daysToTarget: toTargetDays }); 
-}, [maintainCalc, toTargetDays]);
+  updateForm({ goal: yourGoal }); 
+}, [maintainCalc, toTargetDays, yourGoal]);
 
  // Sends form data to database
  async function sendToDb(){
@@ -150,14 +137,6 @@ useEffect(() => {
         <Form.Label className="text-light">Target Weight(lbs)</Form.Label>
         <Form.Control onChange={(e) => updateForm({ targetWeight: e.target.value })} 
         type="text" placeholder="Enter target weight" />  
-
-        <Form.Label className="text-light">Goal</Form.Label>
-        <Form.Select onChange={(e) => updateForm({ goal: e.target.value })} type="text">
-          <option></option>
-          <option>Bulk</option>
-          <option>Maintain</option>
-          <option>Slim</option>
-        </Form.Select>    
 
         <Form.Label className="text-light">Workout Difficulty</Form.Label>
         <Form.Select onChange={(e) => updateForm({ workoutDifficulty: e.target.value })} type="text">
