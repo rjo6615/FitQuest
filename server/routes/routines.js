@@ -27,7 +27,7 @@ routineRoutes.route("/routines").get(function (req, res) {
       });
    });
 
-// This section will get a list of all the routines.
+// This section will get a workouts.
 routineRoutes.route("/routines/goal/:goal/:difficulty/:day").get(function (req, res) {
   let db_connect = dbo.getDb();
   db_connect
@@ -60,6 +60,19 @@ routineRoutes.route("/routines/add").post(function (req, response) {
     response.json(res);
   });
  });
+
+ // This section will update routine.
+routineRoutes.route('/update/:id').put((req, res, next) => {
+  let id = { _id: ObjectId(req.params.id) };
+  let db_connect = dbo.getDb();
+  db_connect.collection("routines").updateOne(id, {$set:{'targetWeight': req.body.targetWeight}}, (err, result) => {
+    if(err) {
+      throw err;
+    }
+    console.log("1 routine updated");
+    res.send('user updated sucessfully');
+  });
+});
 
  // This section will delete a routine
 routineRoutes.route("/delete-routine/:id").delete((req, response) => {
