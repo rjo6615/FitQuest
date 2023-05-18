@@ -65,7 +65,18 @@ routineRoutes.route("/routines/add").post(function (req, response) {
 routineRoutes.route('/update/:id').put((req, res, next) => {
   let id = { _id: ObjectId(req.params.id) };
   let db_connect = dbo.getDb();
-  db_connect.collection("routines").updateOne(id, {$set:{'targetWeight': req.body.targetWeight}}, (err, result) => {
+  db_connect.collection("routines").updateOne(id, {$set:{
+  'routineName': req.body.routineName, 
+  'age': req.body.age, 
+  'sex': req.body.sex,
+  'height': req.body.height,
+  'currentWeight': req.body.currentWeight,
+  'targetWeight': req.body.targetWeight,
+  'goal': req.body.goal,
+  'workoutDifficulty': req.body.workoutDifficulty,
+  'calorieIntake': req.body.calorieIntake,
+  'calorieMaintain': req.body.calorieMaintain,
+  'daysToTarget': req.body.daysToTarget}}, (err, result) => {
     if(err) {
       throw err;
     }
