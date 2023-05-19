@@ -3,7 +3,7 @@ const routineRoutes = express.Router();
 const dbo = require("../db/conn"); 
 const ObjectId = require("mongodb").ObjectId;
 
-// This section will get a user.
+// This section will get a user
 routineRoutes.route("/users/:username/:password").get(function (req, res) {
   let db_connect = dbo.getDb();
   let myquery = { username: req.params.username, password: req.params.password };
@@ -13,6 +13,19 @@ routineRoutes.route("/users/:username/:password").get(function (req, res) {
       if (err) throw err;
       res.json(result);
     });
+ });
+
+ // This section will create a new user
+ routineRoutes.route("/users/add").post(function (req, response) {
+  let db_connect = dbo.getDb();
+  let myobj = {
+    username: req.body.username,
+    password: req.body.password,
+  };
+  db_connect.collection("users").insertOne(myobj, function (err, res) {
+    if (err) throw err;
+    response.json(res);
+  });
  });
 
 // This section will get a single routine by id
