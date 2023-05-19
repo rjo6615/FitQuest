@@ -48,7 +48,7 @@ async function fetchData() {
 
   if (!response.ok) {
     const message = `An error has occurred: ${response.statusText}`;
-    window.alert(message);
+    console.log(message);
     return;
   }
 
