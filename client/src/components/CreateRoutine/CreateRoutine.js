@@ -127,39 +127,39 @@ useEffect(() => {
 
  return (
 <center>
-      <h1 className="text-light">Create Routine</h1>
+      <h1 className="text-dark" style={{fontFamily: "Shadows Into Light, cursive"}}>Start your Quest</h1>
       <br></br>
     <Form onSubmit={onSubmit} className="px-5" style={{ marginBottom: 200, maxWidth: 600, minHeight: 315, borderRadius: 25}}>
      
       <Form.Group className="mb-3 pt-3" controlId="formExerciseName">
-        <Form.Label className="text-light">Routine Name</Form.Label>
+        <Form.Label className="text-dark">Routine Name</Form.Label>
         <Form.Control onChange={(e) => updateForm({ routineName: e.target.value })}
          type="text" placeholder="Enter routine name" />  
        
-        <Form.Label className="text-light">Age</Form.Label>
+        <Form.Label className="text-dark">Age</Form.Label>
         <Form.Control onChange={(e) => updateForm({ age: e.target.value })} 
         type="text" placeholder="Enter age" /> 
         
-        <Form.Label className="text-light">Sex</Form.Label>
+        <Form.Label className="text-dark">Sex</Form.Label>
         <Form.Select onChange={(e) => updateForm({ sex: e.target.value })}  type="text">
           <option></option>
           <option>Male</option>
           <option>Female</option>
         </Form.Select>
 
-        <Form.Label className="text-light">Height</Form.Label>
+        <Form.Label className="text-dark">Height</Form.Label>
         <Form.Control onChange={(e) => updateForm({ height: e.target.value })} 
         type="text" placeholder="Enter height" />      
 
-        <Form.Label className="text-light">Current Weight(lbs)</Form.Label>
+        <Form.Label className="text-dark">Current Weight(lbs)</Form.Label>
         <Form.Control onChange={(e) => updateForm({ currentWeight: e.target.value })} 
         type="text" placeholder="Enter current weight" />    
 
-        <Form.Label className="text-light">Target Weight(lbs)</Form.Label>
+        <Form.Label className="text-dark">Target Weight(lbs)</Form.Label>
         <Form.Control onChange={(e) => updateForm({ targetWeight: e.target.value })} 
         type="text" placeholder="Enter target weight" />  
 
-        <Form.Label className="text-light">Workout Difficulty</Form.Label>
+        <Form.Label className="text-dark">Workout Difficulty</Form.Label>
         <Form.Select onChange={(e) => updateForm({ workoutDifficulty: e.target.value })} type="text">
           <option></option>
           <option value="Low">Daily exercise, or intense exercise 3-4 times per week</option>
@@ -167,14 +167,14 @@ useEffect(() => {
           <option value="Intense">Very intense exercise daily, or a highly physical job</option>
         </Form.Select>  
         
-        <Form.Label className="text-light">Calorie Intake</Form.Label>
+        <Form.Label className="text-dark">Calorie Intake</Form.Label>
         <CDBContainer>
           <CDBSlider step={100} value={value} onChange={changeEvent => { setValue(changeEvent.target.value); updateForm({ calorieIntake: changeEvent.target.value })}} tooltip={"auto"} tooltipPlacement={"bottom"} size={"lg"} min={sliderMin} max={sliderMax} style={{ width: '100%' }} />
         </CDBContainer> 
     
       </Form.Group>
 
-      <Button className="mb-3" variant="secondary" type="submit">
+      <Button className="mb-3" variant="primary" type="submit">
         Submit
       </Button>
     </Form>

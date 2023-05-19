@@ -21,9 +21,7 @@ function App() {
   }
 
   return (
-    <div   className="bg-image"
-    style={{
-      backgroundImage: 'url(./images/black_paper.webp)', height: '100vh'}}>
+    <div   className="bg-image">
     <Router>
         <Navbar />
         <Routes>

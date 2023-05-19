@@ -10,7 +10,7 @@ const Record = (props) => (
    <td>
      {/* <Link className="btn btn-link" to={`/edit/${props.record._id}`}>Edit</Link> | */}
      <Button variant="danger" onClick={() => {props.deleteRecord(props.record._id);}}>Delete</Button>
-     <Link className="btn btn-link" to={`/single-routine/${props.record._id}`}><Button variant="secondary">View</Button></Link>     
+     <Link className="btn btn-link" to={`/single-routine/${props.record._id}`}><Button variant="primary">View</Button></Link>     
    </td>
  </tr>
 );
@@ -65,8 +65,8 @@ export default function RecordList() {
  return (
   <center>
    <div className="px-5 w-50">
-     <h3 className="text-light">Routine List</h3>
-     <table className="table text-light" style={{ marginTop: 20 }}>
+     <h3 className="text-dark">Routine List</h3>
+     <table className="table text-dark" style={{ marginTop: 20 }}>
        <thead>
          <tr>
            <th>Routines</th>
