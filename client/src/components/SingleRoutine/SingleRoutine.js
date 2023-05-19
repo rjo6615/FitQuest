@@ -180,11 +180,9 @@ useEffect(() => {
   //Fetches routine goal data
   useEffect(() => {
     async function fetchStuff() {
-      console.log(form.goal);
       const goal = form.goal.toString();
       const date = new Date();
-      const day = date.getDay();  
-      console.log(day);    
+      const day = date.getDay();    
       // very angry big errors but work afterwords
       const response = await fetch(`/routines/goal/${form.goal.toString()}/${form.workoutDifficulty.toString()}/${day}`);
   
@@ -200,7 +198,6 @@ useEffect(() => {
         navigate("/");
         return;
       }
-  console.log(form.goal);
       setRoutine(record);
     }
     fetchStuff();

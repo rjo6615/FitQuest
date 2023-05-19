@@ -5,11 +5,11 @@ import Col from 'react-bootstrap/Col';
 function Home() {
   return (
     <center>
-    <div className="w-50">
+    <div className="w-100">
     <Carousel>
       <Carousel.Item>
         <img
-          className="d-block w-100"
+          className="d-block w-100" style={{ maxHeight: 600, objectFit: "cover" }}
           src="./images/arm_row.jpg"
           alt="First slide"
         />
@@ -20,7 +20,7 @@ function Home() {
       </Carousel.Item>
       <Carousel.Item>
         <img
-          className="d-block w-100"
+          className="d-block w-100" style={{ maxHeight: 600, objectFit: "cover" }}
           src="./images/cardio.jpg"
           alt="Second slide"
         />
@@ -32,7 +32,7 @@ function Home() {
       </Carousel.Item>
       <Carousel.Item>
         <img
-          className="d-block w-100"
+          className="d-block w-100" style={{ maxHeight: 600, objectFit: "cover" }}
           src="./images/gym.jpg"
           alt="Third slide"
         />
@@ -63,7 +63,7 @@ function Home() {
     </div>
     {/* Create routine button */}
     <div>
-    <Button href="./create-routine" className="p-5 m-5" size="lg" variant="secondary">Create your Routine</Button>
+    <Button href="./create-routine" className="p-4 m-1" size="lg" variant="primary">Start your Quest</Button>
     </div>
     </center>
   );
