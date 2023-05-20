@@ -30,6 +30,7 @@ export default function Login({ setToken }) {
   const [newUser, setNewUser] = useState({
     username: "", 
     password: "",
+    confirmPassword: "",
    });
 
   // Update the state properties.
@@ -41,8 +42,13 @@ export default function Login({ setToken }) {
 
   // Function to handle submission.
  async function onSubmit(e) {
-  e.preventDefault();   
-   sendToDb();
+  e.preventDefault();  
+  if (newUser.password === newUser.confirmPassword) {
+    sendToDb();
+  } else {
+    alert("Passwords do not match!");
+  }
+   
 }
 
  // Sends form data to database
@@ -62,7 +68,8 @@ export default function Login({ setToken }) {
  
    setNewUser({
    username: "", 
-   password: "",});
+   password: "",
+   confirmPassword: "",});
  }
   const handleSubmit = async e => {
     e.preventDefault();
@@ -209,7 +216,11 @@ return;
       
        <Form.Label className="text-dark">Password</Form.Label>
        <Form.Control onChange={(e) => updateForm({ password: e.target.value })} 
-       type="password" placeholder="Enter password" />   
+       type="password" placeholder="Enter password" />  
+
+       <Form.Label className="text-dark">Confirm Password</Form.Label>
+       <Form.Control onChange={(e) => updateForm({ confirmPassword: e.target.value })} 
+       type="password" placeholder="Confirm password" />  
      </Form.Group>
      <center>
      <Button variant="primary" onClick={handleClose} type="submit">
