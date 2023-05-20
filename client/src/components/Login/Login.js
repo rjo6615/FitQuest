@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import Carousel from 'react-bootstrap/Carousel';
+// import Carousel from 'react-bootstrap/Carousel';
 import Modal from 'react-bootstrap/Modal';
 import { MDBFooter, MDBContainer, MDBRow, MDBCol, MDBIcon } from 'mdb-react-ui-kit';
 
@@ -102,58 +102,52 @@ return;
 }, [username, password]); 
 
   return(
-    <center  className="bg-image">
-         <div className="w-50">
-    <Carousel className='pt-5'>
-      <Carousel.Item>
-        <img
-          className="d-block w-100"
-          src="./images/arm_row.jpg"
-          alt="First slide"
-        />
-        <Carousel.Caption>
-          <h3>Start your fitness journey today!</h3>
-          <p>Allow us to help you to reach your goals.</p>
-        </Carousel.Caption>
-      </Carousel.Item>
-      <Carousel.Item>
-        <img
-          className="d-block w-100"
-          src="./images/cardio.jpg"
-          alt="Second slide"
-        />
-        <Carousel.Caption>
-          <h3>Keep on the move!</h3>
-          <p>Remember only the weak ignore leg day.</p>
-        </Carousel.Caption>
-      </Carousel.Item>
-      <Carousel.Item>
-        <img
-          className="d-block w-100"
-          src="./images/gym.jpg"
-          alt="Third slide"
-        />
-        <Carousel.Caption>          
-        </Carousel.Caption>
-      </Carousel.Item>
-    </Carousel>
-    </div>
-     <Form  className="w-25 pt-5 mb-3" onSubmit={handleSubmit}>
-        <h1 className='text-dark'>Welcome to Fit-Quest please login</h1>
+    <center>
+       <MDBContainer className="my-5">
+<MDBRow>
+  <MDBCol col='6' className="mb-5">
+    <div className="d-flex flex-column ms-5">
+      <div className="text-center">
+        <img src="./images/android-chrome-192x192.png"
+          style={{width: '185px'}} alt="logo" />
+        <h4 className="mt-1 mb-5 pb-1" style={{fontFamily: "Shadows Into Light, cursive"}}><strong>Fit Quest</strong></h4>
+      </div>
+      <p>Please login to your account</p>
+      <Form  className="w-100 mb-3" onSubmit={handleSubmit}>
      <Form.Group className="" controlId="formUsername">
        <Form.Label>Username</Form.Label>
        <Form.Control type="text"  onChange={e => setUserName(e.target.value)} placeholder="Enter username" />
      </Form.Group>
-
      <Form.Group className="mb-3" controlId="formPassword">
        <Form.Label>Password</Form.Label>
        <Form.Control type="password" onChange={e => setPassword(e.target.value)} placeholder="Password" />
-     </Form.Group>
-     <Button className="me-2" variant="primary" type="submit">
+     </Form.Group>     
+      <div className="text-center pt-1 mb-5 pb-1">
+      <Button className="mb-2 w-100" variant="primary" type="submit">
        Login
      </Button>
-     <Button variant="success" onClick={() => {handleShow();}}>Sign up</Button>
-   </Form>
+        <a className="text-muted" href="#!">Forgot password?</a>
+      </div>
+      </Form>
+      <div className="d-flex flex-row align-items-center justify-content-center pb-4 mb-4">
+        <p className="mb-0">Don't have an account?</p>
+        <Button variant="success" className="mx-2" onClick={() => {handleShow();}}>Sign up</Button>
+      </div>
+    </div>
+  </MDBCol>
+  <MDBCol col='6' className="mb-5">
+    <div className="d-flex flex-column bg-image justify-content-center h-100 mb-4" style={{backgroundImage: 'url(./images/loginbg.jpg)', objectFit: "contain"}}>
+      <div className="text-white px-3 py-4 p-md-5 mx-md-4">
+        <h4 class="mb-4">We are more than just a company</h4>
+        <p class="small mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+          exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </p>
+      </div>
+    </div>
+  </MDBCol>
+</MDBRow>
+</MDBContainer>
    <MDBFooter bgColor='light' className='bg-image text-center text-lg-start text-muted'>
       <section className='d-flex justify-content-center p-4 border-bottom'>
         <div className='me-5 d-none d-lg-block'>
