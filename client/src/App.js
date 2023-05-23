@@ -30,7 +30,7 @@ function App() {
           <Route path="/showRoutines" element={<Routines />} />
           <Route path="/single-routine/:id" element={<SingleRoutine />} />
           <Route path="/nutrition" element={<Nutrition />} />
-          <Route path="*" element={<Navigate to="/"/>} />
+          <Route path="*" element={<Navigate to="/single-routine/:id"/>} />
         </Routes>
         <Footer />
     </Router>

@@ -176,7 +176,7 @@ const items = JSON.parse(localStorage.getItem('token'));
  
      const record = await response.json();
      if (!record) {
-       window.alert(`Record not found`);
+      //  window.alert(`Record not found`);
        navigate("/");
        return;
      }

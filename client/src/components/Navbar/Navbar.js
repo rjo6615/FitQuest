@@ -24,11 +24,11 @@ useEffect(() => {
         <div className="logo-image" style={{width: '46px', height: '46px', borderRadius: '50%', overflow: 'hidden', marginRight: '5px'}}>
             <img src={logo} className="img-fluid" alt="logo"></img>
         </div>
-          <Navbar.Brand className="text-dark" style={{fontFamily: "Shadows Into Light, cursive"}} href="/">Fit Quest</Navbar.Brand>
+          <Navbar.Brand className="text-dark" style={{fontFamily: "Shadows Into Light, cursive"}} href="*">Fit Quest</Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" className="text-dark" />
           <Navbar.Collapse id="navbarScroll">
             <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: '100px' }} navbarScroll>
-              <Nav.Link className="text-dark" href="/create-routine">Start your Quest</Nav.Link>
+              {/* <Nav.Link className="text-dark" href="/create-routine">Start your Quest</Nav.Link> */}
               {/* <Nav.Link className="text-dark" href="/showRoutines">Routines</Nav.Link>  */}
               <Nav.Link className="text-dark" href={`/single-routine/${items.token}`}>Your Profile</Nav.Link>              
             </Nav>
