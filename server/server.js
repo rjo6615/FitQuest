@@ -15,14 +15,6 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
-
-app.use('/login', (req, res) => {
-  res.send({
-    token: 'fitQuestUser'
-  });
-});
-
-
 // get driver connection
 const dbo = require("./db/conn");
  

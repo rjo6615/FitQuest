@@ -2,6 +2,14 @@ const express = require("express");
 const routineRoutes = express.Router(); 
 const dbo = require("../db/conn"); 
 const ObjectId = require("mongodb").ObjectId;
+bcrypt = require('bcrypt'),
+
+routineRoutes.use('/login', (req, res) => {
+  res.send({
+    // token: bcrypt.hashSync(req.body.username, 10)
+    token: req.body.username
+  });
+});
 
 // This section will get a user
 routineRoutes.route("/users/:username/:password").get(function (req, res) {
@@ -31,7 +39,7 @@ routineRoutes.route("/users/:username/:password").get(function (req, res) {
 // This section will get a single routine by id
 routineRoutes.route("/routines/:id").get(function (req, res) {
     let db_connect = dbo.getDb();
-    let myquery = { _id: ObjectId(req.params.id) };
+   let myquery = { token: req.params.id }; 
     db_connect
       .collection("routines")
       .findOne(myquery, function (err, result) {
@@ -79,6 +87,7 @@ routineRoutes.route("/routines/add").post(function (req, response) {
     calorieIntake: req.body.calorieIntake,
     calorieMaintain: req.body.calorieMaintain,
     daysToTarget: req.body.daysToTarget,
+    token: req.body.token,
   };
   db_connect.collection("routines").insertOne(myobj, function (err, res) {
     if (err) throw err;
@@ -88,7 +97,7 @@ routineRoutes.route("/routines/add").post(function (req, response) {
 
  // This section will update routine.
 routineRoutes.route('/update/:id').put((req, res, next) => {
-  let id = { _id: ObjectId(req.params.id) };
+  let id = { token: req.params.id };
   let db_connect = dbo.getDb();
   db_connect.collection("routines").updateOne(id, {$set:{
   'routineName': req.body.routineName, 

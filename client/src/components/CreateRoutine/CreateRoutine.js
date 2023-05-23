@@ -19,6 +19,7 @@ export default function RoutineForm() {
   calorieIntake: "",
   calorieMaintain: "",
   daysToTarget: "",
+  token: "",
 });
 
  const navigate = useNavigate();
@@ -87,12 +88,15 @@ if (form.sex === "Female") {
   maintainCalc = Math.round((10 * convertWeight) + (6.25 * convertHeight) - (5 * form.age) -161);
 } 
 
+const items = JSON.parse(localStorage.getItem('token'));
+console.log(items.token);
 useEffect(() => {
   updateForm({ calorieMaintain: maintainCalc }); 
   updateForm({ daysToTarget: toTargetDays }); 
   updateForm({ goal: yourGoal }); 
   updateForm({ calorieIntake: sliderValue });
-}, [maintainCalc, toTargetDays, yourGoal, sliderValue]);
+  updateForm({ token: items.token });
+}, [maintainCalc, toTargetDays, yourGoal, sliderValue, items.token]);
 
  // Sends form data to database
  async function sendToDb(){
@@ -121,7 +125,8 @@ useEffect(() => {
    workoutDifficulty: "",
    calorieIntake: "",
    calorieMaintain: "",
-   daysToTarget: "",});
+   daysToTarget: "",
+   token: "",});
    navigate("/showRoutines");
  }
 

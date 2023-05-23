@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
@@ -47,7 +47,7 @@ export default function SingleRoutine() {
  const handleClose1 = () => setShow1(false);
  const handleShow1 = () => setShow1(true);
  
- const params = useParams();
+//  const params = useParams();
  const navigate = useNavigate();
 
   // Update the state properties.
@@ -121,10 +121,11 @@ useEffect(() => {
   updateForm({ calorieIntake: sliderValue });
 }, [maintainCalc, toTargetDays, yourGoal, sliderValue]);
 
+const items = JSON.parse(localStorage.getItem('token'));
  // Sends form data to database
  async function sendToDb(){
   const updateRoutine = { ...updatedForm };
-    await fetch(`/update/${params.id}`, {
+    await fetch(`/update/${items.token}`, {
      method: "PUT",
      headers: {
        "Content-Type": "application/json",
@@ -148,13 +149,24 @@ useEffect(() => {
    calorieIntake: "",
    calorieMaintain: "",
    daysToTarget: "",});
-   navigate("/showRoutines");
+   navigate(0);
  }
+//  const [items, setItems] = useState([]);
+
+//  useEffect(() => {
+//    const items = JSON.parse(localStorage.getItem('token'));
+//    console.log(items.token);
+//    if (items) {
+//     setItems(items);
+//    }
+//  }, []);
  //Fetches original routine data
  useEffect(() => {
    async function fetchData() {
-     const id = params.id.toString();
-     const response = await fetch(`/routines/${params.id.toString()}`);
+    //  const id = params.id.toString();
+    const items = JSON.parse(localStorage.getItem('token'));
+     const response = await fetch(`/routines/${items.token}`);
+     
  
      if (!response.ok) {
        const message = `An error has occurred: ${response.statusText}`;
@@ -164,7 +176,7 @@ useEffect(() => {
  
      const record = await response.json();
      if (!record) {
-       window.alert(`Record with id ${id} not found`);
+       window.alert(`Record not found`);
        navigate("/");
        return;
      }
@@ -174,7 +186,7 @@ useEffect(() => {
    fetchData();   
    return;
    
- }, [params.id, navigate]);
+ }, [navigate]);
 
 
   //Fetches routine goal data
