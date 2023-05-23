@@ -127,7 +127,7 @@ useEffect(() => {
    calorieMaintain: "",
    daysToTarget: "",
    token: "",});
-   navigate("/showRoutines");
+   navigate(`/single-routine/${items.token}`);
  }
 
  return (
