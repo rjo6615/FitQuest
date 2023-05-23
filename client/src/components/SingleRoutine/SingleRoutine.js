@@ -220,7 +220,7 @@ const items = JSON.parse(localStorage.getItem('token'));
 useEffect(() => {
 let totalCal = 0;  
 routine.map((el) => (
-  totalCal = totalCal + Math.round(el.activityCoefficient * (form.currentWeight * 0.4535937) * el.volume/60)
+  totalCal = totalCal + Math.round(el.activityCoefficient * (form.currentWeight * 0.4535937) * el.time/60)
   ));
   setTotalCal(totalCal);
 }, [form, routine]);
