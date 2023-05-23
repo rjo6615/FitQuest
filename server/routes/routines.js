@@ -61,10 +61,10 @@ routineRoutes.route("/routines").get(function (req, res) {
    });
 
 // This section will get a workouts.
-routineRoutes.route("/routines/goal/:goal/:difficulty/:day").get(function (req, res) {
+routineRoutes.route("/routines/goal/:difficulty/:day").get(function (req, res) {
   let db_connect = dbo.getDb();
   db_connect
-    .collection(req.params.goal)
+    .collection("workouts")
     .find({ difficulty: req.params.difficulty, day: req.params.day })
     .toArray(function (err, result) {
       if (err) throw err;

@@ -167,9 +167,9 @@ useEffect(() => {
         <Form.Label className="text-dark">Workout Difficulty</Form.Label>
         <Form.Select onChange={(e) => updateForm({ workoutDifficulty: e.target.value })} type="text">
           <option></option>
-          <option value="Low">Daily exercise, or intense exercise 3-4 times per week</option>
-          <option value="Moderate">Intense exercise 6-7 times per week</option>
-          <option value="Intense">Very intense exercise daily, or a highly physical job</option>
+          <option value="Low">Low difficulty exercise 3 days per week</option>
+          <option value="Moderate">Moderate difficulty exercise 4 days per week</option>
+          <option value="Intense">Intense difficulty exercise 5 days per week</option>
         </Form.Select>  
         
         <Form.Label className="text-dark">Calorie Intake</Form.Label>
